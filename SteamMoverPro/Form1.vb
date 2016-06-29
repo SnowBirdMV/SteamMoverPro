@@ -11,6 +11,8 @@ Public Class Form1
     Public bleh As New Double
     Public TRANSFER_COLOR As Color = Color.SkyBlue
     Public BG_COLOR As Color = Color.White
+    public itemsToMove As New ArrayList
+
 
     Dim timerThread As System.Threading.Thread
 
@@ -33,19 +35,24 @@ Public Class Form1
 
             'Adds Path1 folder contents to the first listbox
             For Each folder As String In System.IO.Directory.GetDirectories(Path1.Text)
+                Dim attrs As FileAttributes
                 Dim dInfo As New DirectoryInfo(folder)
-                folder = folder.Remove(0, Len(Path1.Text) + 1)
-                Dim lvi As New ListViewItem
-                lvi.Text = folder
+                If attrs And FileAttributes.ReparsePoint Then
+                Else
 
-                ' set bool parameter to false if you
-                ' do not want to include subdirectories.
-                Dim sizeOfDir As Long = DirectorySize(dInfo, True)
+                    folder = folder.Remove(0, Len(Path1.Text) + 1)
+                    Dim lvi As New ListViewItem
+                    lvi.Text = folder
 
-                gigabyte_size = sizeOfDir / (1024 ^ 3)
-                lvi.SubItems.Add(Math.Round(gigabyte_size, 2).ToString)
+                    ' set bool parameter to false if you
+                    ' do not want to include subdirectories.
+                    Dim sizeOfDir As Long = DirectorySize(dInfo, True)
 
-                ListView1.Items.Add(lvi)
+                    gigabyte_size = sizeOfDir / (1024 ^ 3)
+                    lvi.SubItems.Add(Math.Round(gigabyte_size, 2).ToString)
+
+                    ListView1.Items.Add(lvi)
+                End If
             Next
 
             Dim drive_letter As System.IO.DriveInfo
@@ -71,18 +78,22 @@ Public Class Form1
 
             'Adds Path2 folder contents to the second listbox
             For Each folder As String In System.IO.Directory.GetDirectories(Path2.Text)
+                Dim attrs As FileAttributes
                 Dim dInfo As New DirectoryInfo(folder)
-                folder = folder.Remove(0, Len(Path2.Text) + 1)
-                Dim lvi As New ListViewItem(folder)
+                If attrs And FileAttributes.ReparsePoint Then
+                Else
+                    folder = folder.Remove(0, Len(Path2.Text) + 1)
+                    Dim lvi As New ListViewItem(folder)
 
 
-                ' set bool parameter to false if you
-                ' do not want to include subdirectories.
-                Dim sizeOfDir As Long = DirectorySize(dInfo, True)
+                    ' set bool parameter to false if you
+                    ' do not want to include subdirectories.
+                    Dim sizeOfDir As Long = DirectorySize(dInfo, True)
 
-                gigabyte_size = sizeOfDir / (1024 ^ 3)
-                lvi.SubItems.Add(Math.Round(gigabyte_size, 2).ToString)
-                ListView2.Items.Add(lvi)
+                    gigabyte_size = sizeOfDir / (1024 ^ 3)
+                    lvi.SubItems.Add(Math.Round(gigabyte_size, 2).ToString)
+                    ListView2.Items.Add(lvi)
+                End If
             Next
 
             Dim drive_letter As System.IO.DriveInfo
@@ -98,7 +109,6 @@ Public Class Form1
         If String.IsNullOrWhiteSpace(Path2.Text) Or String.IsNullOrWhiteSpace(Path1.Text) Then
             MessageBox.Show("Need to specify source and destination path", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
-            Dim itemsToMove As New ArrayList
 
             Dim SelectedItem As New ListViewItem
             For Each SelectedItem In ListView1.SelectedItems
@@ -108,10 +118,9 @@ Public Class Form1
                 ListView2.Items.Add(thingy)
                 If SelectedItem.BackColor = TRANSFER_COLOR Then
                     thingy.BackColor = BG_COLOR
-                    Path2toPath1.Remove(Path1.Text + "\" + SelectedItem.Text)
+                    Path2toPath1.Remove(Path2.Text + "\" + SelectedItem.Text)
                 Else
                     thingy.BackColor = TRANSFER_COLOR
-                    MsgBox(thingy.Text)
                     Path1toPath2.Add(Path1.Text + "\" + SelectedItem.Text)
                 End If
 
@@ -141,11 +150,10 @@ Public Class Form1
                 thingy.SubItems.Add(SelectedItem.SubItems(1).Text)
                 If SelectedItem.BackColor = TRANSFER_COLOR Then
                     thingy.BackColor = Color.White
-                    Path1toPath2.Remove(Path2.Text + "\" + SelectedItem.Text)
+                    Path1toPath2.Remove(Path1.Text + "\" + SelectedItem.Text)
                 Else SelectedItem.BackColor = Color.White
                     Path2toPath1.Add(Path2.Text + "\" + SelectedItem.Text)
                     thingy.BackColor = TRANSFER_COLOR
-                    MsgBox(thingy.Text)
                 End If
                 ListView1.Items.Add(thingy)
 
@@ -208,7 +216,7 @@ Public Class Form1
 
             For Each item In Path1toPath2
                 count += 1
-                Label3.Text = count.ToString + "/" + totalNumber.ToString + " " + item.Remove(0, Len(Path1.Text) - 1) + " to " + item.Remove(3, Len(Path2.Text) - 1)
+                Label3.Text = count.ToString + "/" + totalNumber.ToString + " " + item.Remove(0, Len(Path1.Text) - 1) + " to " + Path2.Text
 
 
                 Dim counter As Integer = 0
@@ -244,7 +252,7 @@ Public Class Form1
 
             For Each item In Path2toPath1
                 count += 1
-                Label3.Text = count.ToString + "/" + totalNumber.ToString + " " + item.Remove(0, Len(Path2.Text) - 1) + " to " + item.Remove(3, Len(Path1.Text) - 1)
+                Label3.Text = count.ToString + "/" + totalNumber.ToString + " " + item.Remove(0, Len(Path2.Text) - 1) + " to " + Path1.Text
 
                 Dim counter As Integer = 0
                 While counter <= 2
@@ -299,6 +307,50 @@ Public Class Form1
         ListView2.GridLines = True
 
         Path1.Text = My.Settings.Path1
+        Dim driveLetter As String = Mid(Environment.GetFolderPath(Environment.SpecialFolder.System), 1, 3)
+
+        Dim pathToCheck = driveLetter + "Program Files (x86)\Steam\steamapps\common"
+
+        If Directory.Exists(pathToCheck) Then
+            Path1.Text = pathToCheck
+
+            Path1toPath2.Clear()
+            ListView1.Items.Clear()
+
+            'Adds Path1 folder contents to the first listbox
+            For Each folder As String In System.IO.Directory.GetDirectories(Path1.Text)
+                Dim attrs As FileAttributes
+                Dim dInfo As New DirectoryInfo(folder)
+                If attrs And FileAttributes.ReparsePoint Then
+                Else
+                    folder = folder.Remove(0, Len(Path1.Text) + 1)
+                    Dim lvi As New ListViewItem
+                    lvi.Text = folder
+
+                    ' set bool parameter to false if you
+                    ' do not want to include subdirectories.
+                    Dim sizeOfDir As Long = DirectorySize(dInfo, True)
+
+                    gigabyte_size = sizeOfDir / (1024 ^ 3)
+                    lvi.SubItems.Add(Math.Round(gigabyte_size, 2).ToString)
+
+                    ListView1.Items.Add(lvi)
+                End If
+
+            Next
+
+            Dim drive_letter As System.IO.DriveInfo
+            drive_letter = My.Computer.FileSystem.GetDriveInfo(Path1.Text.Substring(0, 3))
+            Label1.Text = CStr(Math.Round((drive_letter.TotalFreeSpace) / (1024 ^ 3), 2)) + " GB Free"
+            Label1.Visible = True
+        Else
+            MsgBox("Steam installation not ditected, please manually locate your games")
+
+        End If
+
+
+
+
         'If Path1.Text = "" Then
         '    Path1.Clear()
         'Else
@@ -417,4 +469,11 @@ Public Class Form1
 
     End Sub
 
+    Private Sub Path1_TextChanged(sender As Object, e As EventArgs) Handles Path1.TextChanged
+
+    End Sub
+
+    Private Sub ListView1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListView1.SelectedIndexChanged
+
+    End Sub
 End Class

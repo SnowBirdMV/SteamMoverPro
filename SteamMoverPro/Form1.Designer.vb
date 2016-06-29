@@ -49,7 +49,7 @@ Partial Class Form1
         '
         'Path1
         '
-        Me.Path1.Location = New System.Drawing.Point(18, 17)
+        Me.Path1.Location = New System.Drawing.Point(22, 22)
         Me.Path1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Path1.Name = "Path1"
         Me.Path1.Size = New System.Drawing.Size(307, 26)

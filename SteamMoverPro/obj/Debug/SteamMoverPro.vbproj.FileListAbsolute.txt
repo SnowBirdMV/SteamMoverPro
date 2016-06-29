@@ -20,3 +20,25 @@ C:\Users\Matthew\Desktop\SteamMoverPro\SteamMoverPro\obj\Debug\SteamMoverPro.vbp
 C:\Users\Matthew\Desktop\SteamMoverPro\SteamMoverPro\bin\Debug\SteamMoverPro.exe
 C:\Users\Matthew\Desktop\SteamMoverPro\SteamMoverPro\bin\Debug\SteamMoverPro.pdb
 C:\Users\Matthew\Desktop\SteamMoverPro\SteamMoverPro\bin\Debug\SteamMoverPro.xml
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\bin\Debug\SteamMoverPro.exe.config
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\obj\Debug\SteamMoverPro.exe
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\obj\Debug\SteamMoverPro.xml
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\obj\Debug\SteamMoverPro.pdb
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\bin\Debug\SteamMoverPro.exe
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\bin\Debug\SteamMoverPro.pdb
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\bin\Debug\SteamMoverPro.xml
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\obj\Debug\SteamMoverPro.vbprojResolveAssemblyReference.cache
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\obj\Debug\SteamMoverPro.Form1.resources
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\obj\Debug\SteamMoverPro.Resources.resources
+C:\Users\Matthew\Source\Repos\SteamMoverPro\SteamMoverPro\obj\Debug\SteamMoverPro.vbproj.GenerateResource.Cache
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\bin\Debug\SteamMoverPro.exe.config
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\obj\Debug\SteamMoverPro.exe
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\obj\Debug\SteamMoverPro.xml
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\obj\Debug\SteamMoverPro.pdb
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\bin\Debug\SteamMoverPro.exe
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\bin\Debug\SteamMoverPro.pdb
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\bin\Debug\SteamMoverPro.xml
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\obj\Debug\SteamMoverPro.vbprojResolveAssemblyReference.cache
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\obj\Debug\SteamMoverPro.Form1.resources
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\obj\Debug\SteamMoverPro.Resources.resources
+C:\Users\Matthew\Desktop\New folder (24)\SteamMoverPro\obj\Debug\SteamMoverPro.vbproj.GenerateResource.Cache
