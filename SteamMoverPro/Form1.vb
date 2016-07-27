@@ -163,20 +163,7 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub copyMethod()
-        Timer1.Enabled = True
-        Dim i As Integer = 0
 
-        Do Until i = 1000
-            i = i + 1
-            Me.Label4.Text = i
-            Me.Refresh()
-        Loop
-
-
-
-
-    End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
 
@@ -426,7 +413,7 @@ Public Class Form1
         My.Settings.Path2 = Path2.Text
     End Sub
 
-    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+    Private Sub Button6_Click(sender As Object, e As EventArgs)
         transfer_to_folder_size = 0
         transfer_from_folder_size = 0
 
